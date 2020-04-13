@@ -57,33 +57,33 @@ function EditUser(props) {
         
           <Form.Group className="col-md-6">
             <Form.Label> First Name</Form.Label>
-            <Form.Control type="text" name="firstName" id="firstName" placeholder="Enter first name" value={user.firstName} onChange={onChange} />
+            <Form.Control type="text" name="firstName" id="firstName" placeholder="Enter first name" value={user.firstName} onChange={onChange} required/>
           </Form.Group>
           <Form.Group className="col-md-6">
             <Form.Label> Last Name</Form.Label>
-            <Form.Control type="text" name="lastName" id="lastName" placeholder="Enter last name" value={user.lastName} onChange={onChange} />
+            <Form.Control type="text" name="lastName" id="lastName" placeholder="Enter last name" value={user.lastName} onChange={onChange} required/>
           </Form.Group>
           <Form.Group className="col-md-6">
             <Form.Label> Display Name</Form.Label>
-            <Form.Control type="text" name="displayName" id="displayName" placeholder="Enter display name" value={user.displayName} onChange={onChange} />
+            <Form.Control type="text" name="displayName" id="displayName" placeholder="Enter display name" value={user.displayName} onChange={onChange} required/>
           </Form.Group>
           <Form.Group className="col-md-6">
             <Form.Label>Email</Form.Label>
-            <Form.Control type="text" name="email" id="email" rows="3" placeholder="Enter email" value={user.email} onChange={onChange} />
+            <Form.Control type="text" name="email" id="email" rows="3" placeholder="Enter email" value={user.email} onChange={onChange} required/>
           </Form.Group>
           <Form.Group className="col-md-6">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" name="providerid" id="providerid" placeholder="Enter password" value={user.providerid} onChange={onChange} />
+            <Form.Control type="password" name="providerid" id="providerid" placeholder="Enter password" value={user.providerid} onChange={onChange} required/>
           </Form.Group>
 
           <Form.Group className="col-md-6">
             <Form.Label>Type</Form.Label>
-            <Form.Control type="text" name="type" id="type" placeholder="Enter type (member or collector)" value={user.type} onChange={onChange} />
+            <Form.Control type="text" name="type" id="type" placeholder="Enter type (member or collector)" value={user.type} onChange={onChange} required/>
           </Form.Group>
 
           <Form.Group className="col-md-6">
             <Form.Label>Points</Form.Label>
-            <Form.Control type="text" name="points" id="points" placeholder="Enter points" value={user.points} onChange={onChange} />
+            <Form.Control type="text" name="points" id="points" placeholder="Enter points" value={user.points} onChange={onChange} required/>
           </Form.Group>
 
          <div className="col-md-6"> 
