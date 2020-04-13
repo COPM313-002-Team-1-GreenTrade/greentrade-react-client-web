@@ -25,6 +25,8 @@ import UsersList from './components/users/List';
 import ShowUser from './components/users/Show';
 import CreateUser from './components/users/Create';
 import EditUser from './components/users/Edit';
+import ListCodes from './components/codes/List';
+import ShowCodes from './components/codes/Show';
 //
 function App() {
 
@@ -42,6 +44,7 @@ function App() {
             <Nav.Link href="/rewards" style={{marginTop: 15, color: 'white', marginLeft: 10, fontWeight: 'bold'}}>Rewards</Nav.Link>
             <Nav.Link href="/pickups" style={{marginTop: 15, color: 'white', marginLeft: 10, fontWeight: 'bold'}}>Pickups</Nav.Link>
             <Nav.Link href="/users" style={{marginTop: 15, color: 'white', marginLeft: 10, fontWeight: 'bold'}}>Users</Nav.Link>
+            <Nav.Link href="/codes" style={{marginTop: 15, color: 'white', marginLeft: 10, fontWeight: 'bold'}}>Codes</Nav.Link>
             <Nav.Link href="/login" style={{marginTop: 10, color: 'white', marginLeft: 700}}>
             <img src={user} style={{height: 35}}/>
             </Nav.Link>
@@ -65,6 +68,8 @@ function App() {
           <Route render ={()=> < ShowUser />} path="/show_user/:id" />
           <Route render ={()=> < CreateUser />} path="/create_user" />
           <Route render ={()=> < EditUser />} path="/edit_user/:id" />
+          <Route render ={()=> < ListCodes />} path="/codes" />
+          <Route render ={()=> < ShowCodes />} path="/show_codes/:id" />
       </div>
       {/* {path==""?(
       <Home/>
