@@ -51,13 +51,11 @@ function Show(props) {
       {showLoading && <Spinner animation="border" role="status">
         <span className="sr-only">Loading...</span>
       </Spinner> }    
-     <div>{users.length}
+     <div>
     {data.map((item, idx) => (
-        <Jumbotron>
-          <p>{idx}</p> 
-            <h1>Id: {item.uid}</h1>    
-            <h1>{item.displayName}</h1> 
-            <h1>Full Name: {item.firstName} {item.lastName}</h1>
+        <Jumbotron>    
+            <h3>{item.displayName}</h3> 
+            <h3>Full Name: {item.firstName} {item.lastName}</h3>
                 
             <img
                 style={{width: 100, height: 100}}
@@ -65,7 +63,7 @@ function Show(props) {
             />
             <p>Email: {item.email}</p>
             <p>Type: {item.type}</p>
-            <p>Type: {item.points}</p>
+            <p>Points: {item.points}</p>
             <p>isDeleted: {item.deleted===true?"no":"yes"}</p>
             <p>
                 <Button type="button" variant="primary" onClick={() => { editUser(item.uid) }}>Edit User</Button>&nbsp;
