@@ -8,8 +8,8 @@ import { withRouter } from 'react-router-dom';
 function Show(props) {
   const [data, setData] = useState({});
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "https://localhost:44348/api/rewards/" + props.match.params.id;
-
+  const apiUrl = "http://localhost:3000/api/rewards/" + props.match.params.id;
+  
   React.useEffect(() => {
     console.log("Hello")
     const fetchData = async () => {
