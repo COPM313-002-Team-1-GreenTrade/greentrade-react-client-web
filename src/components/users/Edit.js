@@ -9,7 +9,7 @@ import { withRouter } from 'react-router-dom';
 function EditUser(props) {
   const [user, setUser] = useState({});
   const [showLoading, setShowLoading] = useState(false);
-  const apiUrl = "http://localhost:3000/api/users/id" + props.match.params.id;
+  const apiUrl = "http://localhost:3000/api/users/id/" + props.match.params.id;
 
   useEffect(() => {
     setShowLoading(false);
@@ -17,7 +17,7 @@ function EditUser(props) {
     const fetchData = async () => {
       const result = await axios(apiUrl);
       setUser(result.data);
-      console.log(user);
+      console.log(result.data);
       setShowLoading(false);
     };
     
@@ -34,7 +34,7 @@ function EditUser(props) {
     axios.put("http://localhost:3000/api/users/", data)
       .then((result) => {
         setShowLoading(false);
-        props.history.push('/show/' + user.email)
+        props.history.push('/show_user/' + user.email)
       }).catch((error) => setShowLoading(false));
   };
   //runs when student enters a field
