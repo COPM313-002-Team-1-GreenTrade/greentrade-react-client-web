@@ -42,7 +42,7 @@ function EditReward(props) {
       axios.put("http://localhost:3000/api/rewards/", data)
       .then((result) => {
         setShowLoading(false);
-        props.history.push('/rewards')
+        props.history.push('/showreward/' + reward.documentId)
       }).catch((error) => setShowLoading(false));
     }
 
