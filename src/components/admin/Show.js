@@ -8,8 +8,8 @@ import { withRouter } from 'react-router-dom';
 function Show(props) {
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/api/users/" + props.match.params.id;
-  var users = [];
+  const apiUrl = "http://localhost:3000/api/admins/" + props.match.params.id;
+  var admins = [];
   React.useEffect(() => {
     const fetchData = async () => {
       
@@ -22,27 +22,27 @@ function Show(props) {
       });
       //console.log(result.data)
       setData(Array.from(result.data));
-      users = result.data;
-      console.log(users)
+      admins = result.data;
+      console.log(admins)
       setShowLoading(false);
     };
 
     fetchData();
   }, []);
 
-  const editUser = (id) => {
+  const editAdmin = (id) => {
     props.history.push({
-      pathname: '/edit_user/' + id
+      pathname: '/edit_admin/' + id
     });
   };
 
-  const deleteUser = (id) => {
+  const deleteAdmin = (id) => {
     setShowLoading(true);
     
-    axios.delete("http://localhost:3000/api/users/"+id)
+    axios.delete("http://localhost:3000/api/admins/"+id)
       .then((result) => {
         setShowLoading(false);
-        props.history.push('/users')
+        props.history.push('/admins')
       }).catch((error) => setShowLoading(false));
   };
 
@@ -62,12 +62,10 @@ function Show(props) {
                 src={item.profilePhoto}
             />
             <p>Email: {item.email}</p>
-            <p>Type: {item.type}</p>
-            <p>Points: {item.points}</p>
             <p>isDeleted: {item.deleted===true?"no":"yes"}</p>
             <p>
-                <Button type="button" variant="primary" onClick={() => { editUser(item.uid) }}>Edit User</Button>&nbsp;
-                <Button type="button" variant="danger" onClick={() => { deleteUser(item.uid) }}>Delete User</Button>
+                <Button type="button" variant="primary" onClick={() => { editAdmin(item.uid) }}>Edit Admin</Button>&nbsp;
+                <Button type="button" variant="danger" onClick={() => { deleteAdmin(item.uid) }}>Delete Admin</Button>
             </p>
         </Jumbotron>
     ))}
