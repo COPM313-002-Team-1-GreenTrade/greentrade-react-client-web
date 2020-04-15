@@ -6,12 +6,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { withRouter } from 'react-router-dom';
 
-function Edit(props) {
-  const [reward, setReward] = useState({ documentId: '', brand: '', cost: '', hasStock: '', 
-  id: '',img_url: '', value: '' });
-  const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "https://localhost:44348/api/rewards/" + props.match.params.id;
-  //runs only once after the first render
+function EditReward(props) {
+  const [reward, setReward] = useState({});
+  const [showLoading, setShowLoading] = useState(false);
+  const apiUrl = "http://localhost:3000/api/rewards/" + props.match.params.id;
+
   useEffect(() => {
     setShowLoading(false);
     //call api
@@ -21,31 +20,35 @@ function Edit(props) {
       console.log(result.data);
       setShowLoading(false);
     };
-
+    
     fetchData();
   }, []);
 
   const updateReward = (e) => {
     setShowLoading(true);
     e.preventDefault();
-    const data = { brand: reward.brand, cost: reward.cost, 
-      hasStock: reward.hasStock, id: reward.id, img_url: reward.img_url, value: reward.value};
-      
-    axios({
-      method: 'PUT',
-      url: apiUrl,
-      data: data,
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        }
-    });
-      // .then((result) => {
+   
+    if(reward.hasStock == 'true'){
+      const data = { brand: reward.brand, cost: reward.cost, 
+        hasStock: true, id: reward.id, img_url: reward.img_url, value: reward.value};
+        axios.put("http://localhost:3000/api/rewards/", data)
+      .then((result) => {
         setShowLoading(false);
-        props.history.push('/showreward/' + props.match.params.id)
-      // }).catch((error) => setShowLoading(false));
+        props.history.push('/rewards')
+      }).catch((error) => setShowLoading(false));
+    }else{
+      const data = { brand: reward.brand, cost: reward.cost, 
+      hasStock: false, id: reward.id, img_url: reward.img_url, value: reward.value};
+      axios.put("http://localhost:3000/api/rewards/", data)
+      .then((result) => {
+        setShowLoading(false);
+        props.history.push('/rewards')
+      }).catch((error) => setShowLoading(false));
+    }
+
+    
   };
-  //runs when user enters a field
+
   const onChange = (e) => {
     e.persist();
     setReward({...reward, [e.target.name]: e.target.value});
@@ -58,7 +61,8 @@ function Edit(props) {
           <span className="sr-only">Loading...</span>
         </Spinner> 
       } 
-      <Jumbotron>
+     <Jumbotron>
+       <h3 style={{textAlign: 'center'}}></h3>
         <Form onSubmit={updateReward}>
           <Form.Group style={{width: 800, marginLeft: 350, marginTop: 20}}>
             <Form.Label> Brand</Form.Label>
@@ -94,4 +98,4 @@ function Edit(props) {
   );
 }
 
-export default withRouter(Edit);
+export default withRouter(EditReward);

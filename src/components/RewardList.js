@@ -11,21 +11,6 @@ function RewardList(props) {
   const [showLoading, setShowLoading] = useState(true);
   const apiUrl = "http://localhost:3000/api/rewards";
 
-  // useEffect(() => {
-  //   // const fetchData = async () => {
-  //   //   // const result = await axios(apiUrl);
-  //     fetch(apiUrl).then(res => res.json())
-  //     .then((data) => {
-  //       console.log(data)
-  //       setData(data);
-  //       setShowLoading(false);
-  //     })
-  //     .catch(console.log)
-
-  //   // };
-  //   // fetchData();
-  // }, []);
-
   React.useEffect(() => {
     console.log("Hello")
     const fetchData = async () => {
@@ -63,11 +48,7 @@ function RewardList(props) {
       <Button variant="primary" onClick={() => { addNew() }} style={{width: 1200, marginTop: 20, marginLeft: 150}}>
             Add New Reward
           </Button>
-      {/* <ListGroup>
-        {data.map((item, idx) => (
-          <ListGroup.Item key={idx} action onClick={() => { showDetail(item.documentId) }}>{item.brand}</ListGroup.Item>
-        ))}
-      </ListGroup> */}
+
       <Table striped bordered hover style= {{marginTop: 20, width: 1200, marginLeft: 150}}>
             <thead>
               <tr>
