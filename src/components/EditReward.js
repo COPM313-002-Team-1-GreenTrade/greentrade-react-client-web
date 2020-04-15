@@ -29,9 +29,9 @@ function EditReward(props) {
     e.preventDefault();
    
     if(reward.hasStock == 'true'){
-      const data = { brand: reward.brand, cost: reward.cost, 
+      const data = { documentId: reward.documentId, brand: reward.brand, cost: reward.cost, 
         hasStock: true, id: reward.id, img_url: reward.img_url, value: reward.value};
-        axios.put("http://localhost:3000/api/rewards/", data)
+        axios.put(apiUrl, data)
       .then((result) => {
         setShowLoading(false);
         props.history.push('/rewards')
@@ -39,7 +39,7 @@ function EditReward(props) {
     }else{
       const data = { brand: reward.brand, cost: reward.cost, 
       hasStock: false, id: reward.id, img_url: reward.img_url, value: reward.value};
-      axios.put("http://localhost:3000/api/rewards/", data)
+      axios.put(apiUrl, data)
       .then((result) => {
         setShowLoading(false);
         props.history.push('/showreward/' + reward.documentId)
