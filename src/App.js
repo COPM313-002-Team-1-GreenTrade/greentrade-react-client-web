@@ -21,6 +21,10 @@ import Home from './components/Home';
 import Login from './components/Login';
 import PickupsList from './components/PickupsList';
 import ShowPickup from './components/ShowPickup';
+import ContainersInventoryList from './components/containers_inventory/List';
+import ShowContainersInventory from './components/containers_inventory/Show';
+import CreateContainerInventory from './components/containers_inventory/Create';
+import EditContainersInventory from './components/containers_inventory/Edit';
 import UsersList from './components/users/List';
 import ShowUser from './components/users/Show';
 import CreateUser from './components/users/Create';
@@ -45,6 +49,7 @@ function App() {
             <Nav.Link href="/pickups" style={{marginTop: 15, color: 'white', marginLeft: 10, fontWeight: 'bold'}}>Pickups</Nav.Link>
             <Nav.Link href="/users" style={{marginTop: 15, color: 'white', marginLeft: 10, fontWeight: 'bold'}}>Users</Nav.Link>
             <Nav.Link href="/codes" style={{marginTop: 15, color: 'white', marginLeft: 10, fontWeight: 'bold'}}>Codes</Nav.Link>
+            <Nav.Link href="/containers_inventory" style={{marginTop: 15, color: 'white', marginLeft: 10, fontWeight: 'bold'}}>Containers</Nav.Link>
             <Nav.Link href="/login" style={{marginTop: 10, color: 'white', marginLeft: 700}}>
             <img src={user} style={{height: 35}}/>
             </Nav.Link>
@@ -70,6 +75,10 @@ function App() {
           <Route render ={()=> < EditUser />} path="/edit_user/:id" />
           <Route render ={()=> < ListCodes />} path="/codes" />
           <Route render ={()=> < ShowCodes />} path="/show_codes/:id" />
+          <Route render ={()=> < ContainersInventoryList />} path="/containers_inventory" />
+          <Route render ={()=> < ShowContainersInventory />} path="/show_container/:id" />
+          <Route render ={()=> < CreateContainerInventory />} path="/create_container" />
+          <Route render ={()=> < EditContainersInventory />} path="/edit_container/:id" />
       </div>
       {/* {path==""?(
       <Home/>
