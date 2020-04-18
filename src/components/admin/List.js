@@ -9,7 +9,7 @@ import Table from 'react-bootstrap/Table';
 function List(props) {
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/api/admin";
+  const apiUrl = "http://localhost:3000/api/admins";
 
   useEffect(() => {
     const fetchData = async () => {

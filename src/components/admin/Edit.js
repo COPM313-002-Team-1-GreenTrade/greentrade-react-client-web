@@ -9,7 +9,7 @@ import { withRouter } from 'react-router-dom';
 function EditAdmin(props) {
   const [admin, setAdmin] = useState({});
   const [showLoading, setShowLoading] = useState(false);
-  const apiUrl = "http://localhost:3000/api/admin/id/" + props.match.params.id;
+  const apiUrl = "http://localhost:3000/api/admins/id/" + props.match.params.id;
 
   useEffect(() => {
     setShowLoading(false);
@@ -30,7 +30,7 @@ function EditAdmin(props) {
     const data = { uid: admin.uid, firstName: admin.firstName, lastName: admin.lastName, 
         email: admin.email, providerid: admin.providerid, displayName : admin.displayName};
 
-    axios.put("http://localhost:3000/api/admin/", data)
+    axios.put("http://localhost:3000/api/admins/", data)
       .then((result) => {
         setShowLoading(false);
         props.history.push('/show_admin/' + admin.email)
@@ -52,7 +52,7 @@ function EditAdmin(props) {
       <Jumbotron>
         
         <Form onSubmit={updateAdmin}>
-          <Form.Group className="col-md-6"> <h3>Update Admin</h3> </Form.Group>
+          <Form.Group className="col-md-6"> <h3>Update admins</h3> </Form.Group>
         
           <Form.Group className="col-md-6">
             <Form.Label> First Name</Form.Label>

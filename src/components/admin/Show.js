@@ -8,8 +8,8 @@ import { withRouter } from 'react-router-dom';
 function Show(props) {
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/api/admin/" + props.match.params.id;
-  var admin = [];
+  const apiUrl = "http://localhost:3000/api/admins/" + props.match.params.id;
+  var admins = [];
   React.useEffect(() => {
     const fetchData = async () => {
       
@@ -22,8 +22,8 @@ function Show(props) {
       });
       //console.log(result.data)
       setData(Array.from(result.data));
-      admin = result.data;
-      console.log(admin)
+      admins = result.data;
+      console.log(admins)
       setShowLoading(false);
     };
 
@@ -39,10 +39,10 @@ function Show(props) {
   const deleteAdmin = (id) => {
     setShowLoading(true);
     
-    axios.delete("http://localhost:3000/api/admin/"+id)
+    axios.delete("http://localhost:3000/api/admins/"+id)
       .then((result) => {
         setShowLoading(false);
-        props.history.push('/admin')
+        props.history.push('/admins')
       }).catch((error) => setShowLoading(false));
   };
 

@@ -27,24 +27,18 @@ function Show(props) {
     fetchData();
   }, []);
 
-  const cancelPickup = (id) => {
-    const d = { additionalInfo: data.additionalInfo, address: data.address, collectorId: data.collectorId, cancelled: true,
-        collectorName: data.collectorName, fulfilledTime: data.fulfilledTime, memberId: data.memberId, memberName: data.memberName,
-        memberProfilePicURL: data.memberProfilePicURL, scheduledTime: data.scheduledTime};
-        
-      axios({
-        method: 'PUT',
-        url: apiUrl,
-        data: d,
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          }
-      })
-        .then((result) => {
-          setShowLoading(false);
-          props.history.push('/pickups/')
-        }).catch((error) => setShowLoading(false));
+  const cancelPickup = (e) => {
+
+        setShowLoading(true);
+        e.preventDefault();
+        const d = { additionalInfo: data.additionalInfo, address: data.address, collectorId: data.collectorId, cancelled: true,
+          collectorName: data.collectorName, fulfilledTime: data.fulfilledTime, memberId: data.memberId, memberName: data.memberName,
+          memberProfilePicURL: data.memberProfilePicURL, scheduledTime: data.scheduledTime};
+        axios.put("http://localhost:3000/api/pickups/" +  props.match.params.id, d)
+          .then((result) => {
+            setShowLoading(false);
+            props.history.push('/pickups')
+          }).catch((error) => setShowLoading(false));
   }
 
 
@@ -76,7 +70,7 @@ function Show(props) {
   <p>Collector Name: {data.collectorName}</p>
 
         <p>
-          <Button type="button" variant="primary" onClick={() => { cancelPickup(data.uid) }}>Cancel Pickup</Button>&nbsp;
+          <Button type="button" variant="primary" onClick={cancelPickup}>Cancel Pickup</Button>&nbsp;
           <Button type="button" variant="danger" onClick={() => { deletePickup(data.uid) }}>Delete Pickup</Button>
         </p>
       </Jumbotron>
