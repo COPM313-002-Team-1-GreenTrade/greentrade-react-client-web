@@ -29,7 +29,7 @@ import UsersList from './components/users/List';
 import ShowUser from './components/users/Show';
 import CreateUser from './components/users/Create';
 import EditUser from './components/users/Edit';
-import AdminList from '.components/admin/List';
+import AdminList from './components/admin/List';
 import ShowAdmin from './components/admin/Show';
 import CreateAdmin from './components/admin/Create';
 import EditAdmin from './components/admin/Edit';
@@ -77,10 +77,10 @@ function App() {
           <Route render ={()=> < ShowPickup />} path="/showpickup/:id" />
           <Route render ={()=> < ShowUser />} path="/show_user/:id" />
           <Route render ={()=> < CreateUser />} path="/create_user" />
-          <Route render ={()=> < EditUser />} path="/edit_user/:id" />
+          <Route render ={()=> < EditUser />} path="/edit_user/:id" />     
           <Route render ={()=> < ShowAdmin />} path="/show_admin/:id" />
           <Route render ={()=> < CreateAdmin />} path="/create_admin" />
-          <Route render ={()=> < EditAdmin />} path="/edit_admin/:id" />
+          <Route render ={()=> < EditAdmin/>} path="/edit_admin/:id" />
           <Route render ={()=> < ListCodes />} path="/codes" />
           <Route render ={()=> < ShowCodes />} path="/show_codes/:id" />
           <Route render ={()=> < ContainersInventoryList />} path="/containers_inventory" />
