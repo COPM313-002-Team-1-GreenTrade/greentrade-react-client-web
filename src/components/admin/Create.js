@@ -10,7 +10,7 @@ function CreateAdmin(props) {
   const [admin, setAdmin] = useState({ uid: '', firstName: '', lastName: '', displayName: '',
                 email: '', providerid: '', deleted: false});
   const [showLoading, setShowLoading] = useState(false);
-  const apiUrl = "http://localhost:3000/api/admins";
+  const apiUrl = "http://localhost:3000/api/admin";
 
   const saveAdmin = (e) => {
     setShowLoading(true);
@@ -39,7 +39,7 @@ function CreateAdmin(props) {
       <Jumbotron>
         
         <Form onSubmit={saveAdmin}>
-            <Form.Group className="col-md-6"> <h3>Add New Admins</h3> </Form.Group>
+            <Form.Group className="col-md-6"> <h3>Add New admin</h3> </Form.Group>
         
           <Form.Group className="col-md-6">
             <Form.Label> First Name</Form.Label>
