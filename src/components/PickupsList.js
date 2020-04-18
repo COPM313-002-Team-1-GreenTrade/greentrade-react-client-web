@@ -9,7 +9,7 @@ import Table from 'react-bootstrap/Table';
 function PickupsList(props) {
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/api/pickups";
+  const apiUrl = "https://localhost:44348/api/pickups";
 
   // useEffect(() => {
   //   // const fetchData = async () => {

@@ -7,21 +7,57 @@ import Button from 'react-bootstrap/Button';
 import { withRouter } from 'react-router-dom';
 
 function CreateReward(props) {
-  const [reward, setReward]= useState({ documentId: '', brand: '', cost: '', hasStock: '', 
-  id: '',img_url: '', value: '' });
+  const [reward, setReward] = useState({ documentId: '', brand: '', cost: '', hasStock: '', 
+                id: '',img_url: '', value: '' });
   const [showLoading, setShowLoading] = useState(false);
-  const apiUrl = "http://localhost:3000/api/rewards";
+  const apiUrl = "https://localhost:44348/api/rewards";
 
-  const saveReward= (e) => {
+  const saveReward = (e) => {
     setShowLoading(true);
-    e.preventDefault();
-    const data = { brand: reward.brand, cost: reward.cost, 
-      hasStock: true, id: reward.id, img_url: reward.img_url, value: reward.value};
-    axios.post(apiUrl, data)
-      .then((result) => {
+    if(reward.hasStock == 'true')
+    {
+      const data = { brand: reward.brand, cost: reward.cost, 
+        hasStock: true, id: reward.id, img_url: reward.img_url, value: reward.value};
+        console.log(1)
+        try{
+          axios({
+            method: 'POST',
+            url: apiUrl,
+            data: data,
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              }
+          }).then (result =>{
+            setShowLoading(false);
+            props.history.push('/rewards')
+          })
+        }
+        catch(err){
+          console.log(err)
+        }
+       
+    }
+    else {
+      const data = { brand: reward.brand, cost: reward.cost, 
+        hasStock: false, id: reward.id, img_url: reward.img_url, value: reward.value};
+        console.log(1)
+        axios({
+          method: 'POST',
+          url: apiUrl,
+          data: data
+        })
         setShowLoading(false);
-        props.history.push('/rewards')
-      }).catch((error) => setShowLoading(false));
+      props.history.push('/rewards')
+    }
+   
+      // .then((result) => {
+      //   setShowLoading(false);
+      //   props.history.push('/rewards')
+      // }).catch((error) => setShowLoading(false));
+      
+    
+      // props.history.push('/showreward/' + result.data.documentId)
   };
 
   const onChange = (e) => {
@@ -36,6 +72,7 @@ function CreateReward(props) {
           <span className="sr-only">Loading...</span>
         </Spinner> 
       } 
+
       <Jumbotron>
       <h2 style={{textAlign: 'center'}}>Create New Reward</h2>
         <Form onSubmit={saveReward}>
@@ -47,7 +84,10 @@ function CreateReward(props) {
             <Form.Label> Cost</Form.Label>
             <Form.Control style={{marginLeft: 80, marginTop: -40}} type="number" name="cost" id="cost" placeholder="Enter cost" value={reward.cost} onChange={onChange} />
           </Form.Group>
-
+          <Form.Group style={{width: 800, marginLeft: 350, marginTop: 20}}>
+            <Form.Label> Has Stock?</Form.Label>
+            <Form.Control style={{marginLeft: 80, marginTop: -40}} type="text" name="hasStock" id="hasStock" placeholder="Enter true or false" value={reward.hasStock} onChange={onChange} />
+          </Form.Group>
           <Form.Group style={{width: 800, marginLeft: 350, marginTop: 20}}>
             <Form.Label> ID</Form.Label>
             <Form.Control style={{marginLeft: 80, marginTop: -40}} type="number" name="id" id="id" placeholder="Enter id" value={reward.id} onChange={onChange} />
